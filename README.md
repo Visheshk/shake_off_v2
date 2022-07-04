@@ -15,7 +15,7 @@ score = 0
 
 ## Add a timer
 
-Add code to store the ``||input:running time||`` (look in more in the ``||Input||`` section) in a ``||variables:start||`` variable.  This will remember when button A is pressed.
+We will start the game when Button A is pressed. Using ``||input:on button [A] pressed||``, we will use another variable ``||variables:start||`` to record the moment of the button press. This is available in the ``||input:running time||`` block (look in more in the ``||input:Input||`` category).
 
 ```blocks
 let start = 0
@@ -26,7 +26,7 @@ input.onButtonPressed(Button.A, function () {
 
 ## Starting the game
 
-Add a variable to record when the game is running ``||variables:running||``. This will help us make sure our shakes are only counted when the game is running. Assign it the value false from the ``||logic:Logic||`` category on start, and change it to True when button A is pressed.
+ Add a variable to record when the game is running ``||variables:running||``. This will help us make sure our shakes are only counted when the game is running. Assign it the value false from the ``||logic:Logic||`` category on start, and change it to True when button A is pressed. 
 
 ```blocks
 let running = false
@@ -38,6 +38,19 @@ input.onButtonPressed(Button.A, function () {
 })
 
 ```
+
+## Test your code and shake counter
+
+ In the ``||logic:forever||`` block, show the score using ``||basic: show number||`` ``||variables:score||`` blocks. Load the code to your @boardname@ and see your shake counter!
+
+```blocks
+basic.forever(function () {
+    basic.showNumber(score)
+})
+
+
+```
+
 
 ## Announcing the game start
 
@@ -67,17 +80,32 @@ input.onGesture(Gesture.Shake, function () {
 })
 ```
 
-## End the game in 10 seconds
+## Make a timer for 10 seconds
 
-Using the ``||basic:forever||`` block, we can create a check for passing 10 seconds since we started the game, using an ``||logic:if||`` block. Check that ``||Variables:running||`` is true, and ``||input: running time||`` - ``||Variables:start||`` is ``||Logic: >||`` 10000 (since our timer is in milliseconds). Play a sound to indicate the end, and show the score at the end!
+In the ``||basic: forever||`` block, we can compute the elapsed time since we started the game can be done using (blocks from the ``||math:Math||`` category), ``||input: running time||`` ``||math: minus||`` ``||variables: start||``. Using an ``||logic: else if||`` block, check if this has exceeded 10000. Let's play another sound to announce this timer end! 
 
 ```blocks
 basic.forever(function () {
-    if (running &&  input.runningTime() - start > 10000) {
-        running = false
-        basic.showNumber(score)
+    if (10000 < input.runningTime() - start) {
         music.playTone(330, music.beat(BeatFraction.Whole))
     }
+    basic.showNumber(score)
+})
+```
+
+
+## End the game with the timer.
+
+In the last timer, the sound never stops playing, because the timer's condition always stays true. To the condition, if we check that ``||Variables:running||`` is true, and changing it to ``||logic:false||`` the moment the timer ends, makes the game end only happen once. After the game ends, let's show the score.
+Play a sound to indicate the end!
+
+```blocks
+basic.forever(function () {
+    if (running &&  10000 < input.runningTime() - start) {
+        running = false
+        music.playTone(330, music.beat(BeatFraction.Whole))
+    }
+    basic.showNumber(score)
 })
 ```
 
