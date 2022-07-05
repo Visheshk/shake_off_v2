@@ -80,7 +80,7 @@ input.onButtonPressed(Button.A, function () {
 
 ## Make a timer for 10 seconds
 
-In the ``||basic: forever||`` block, we can compute the elapsed time since we started the game can be done using (blocks from the ``||math:Math||`` category), ``||input: running time||`` ``||math: minus||`` ``||variables: start||``. Using an ``||logic: else if||`` block, check if this has exceeded 10000. Let's play another sound to announce this timer end! 
+In the ``||basic: forever||`` block, we can compute the elapsed time since the game started using (blocks from the ``||math:Math||`` category), ``||input: running time||`` ``||math: minus||`` ``||variables: start||``. Using an ``||logic: else if||`` block, check if this has exceeded 10000. Let's play another sound to announce this timer end! 
 
 ```blocks
 basic.forever(function () {
@@ -94,8 +94,7 @@ basic.forever(function () {
 
 ## End the game with the timer.
 
-In the last timer, the sound never stops playing, because the timer's condition always stays true. To the condition, if we check that ``||Variables:running||`` is true, and changing it to ``||logic:false||`` the moment the timer ends, makes the game end only happen once. After the game ends, let's show the score.
-Play a sound to indicate the end!
+In the last timer, the sound never stops playing because the timer's condition always stays true. To the condition, if we check that ``||Variables:running||`` is true, and change it to ``||logic:false||`` the moment the timer ends, the game end only happens once. Leave the score display and sound!
 
 ```blocks
 basic.forever(function () {
