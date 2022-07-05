@@ -39,6 +39,18 @@ input.onButtonPressed(Button.A, function () {
 
 ```
 
+##Counting Shakes
+
+We can use the ``||input:on shake||`` event to detect a shake. Increment the shakes ``||variables:score||`` by `1` when the game is running, using an ``||Logic:if||`` condition block.
+
+```blocks
+input.onGesture(Gesture.Shake, function () {
+    if (running) {
+        score += 1
+    }
+})
+```
+
 ## Test your code and shake counter
 
  In the ``||logic:forever||`` block, show the score using ``||basic: show number||`` ``||variables:score||`` blocks. Load the code to your @boardname@ and see your shake counter!
@@ -47,10 +59,7 @@ input.onButtonPressed(Button.A, function () {
 basic.forever(function () {
     basic.showNumber(score)
 })
-
-
 ```
-
 
 ## Announcing the game start
 
@@ -68,17 +77,6 @@ input.onButtonPressed(Button.A, function () {
 })
 ```
 
-##Counting Shakes
-
-We can use the ``||input:on shake||`` event to detect a shake. Increment the shakes ``||variables:score||`` by `1` when the game is running, using an ``||Logic:if||`` condition block.
-
-```blocks
-input.onGesture(Gesture.Shake, function () {
-    if (running) {
-        score += 1
-    }
-})
-```
 
 ## Make a timer for 10 seconds
 
